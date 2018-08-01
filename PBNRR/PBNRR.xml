@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<executable>
+  <category>Registration</category>
+  <title>Physics-Based Non-Rigid Registration (PBNRR)</title>
+  <description><![CDATA[This module non-rigid registers a moving to a fixed MRI using a linear homogeneous biomechanical model to compute a dense deformation field that defines a transformation for every point in the fixed to the moving image. The module includes three components(Feature Point Selection, Block Matching and Finite Element Solver) combine together to provide a user-friendly interface. The implementation is decribed at: An ITK implementation of a physics-based non-rigid registration method for brain deformation in image-guided neurosurgery, Front. Neuroinform. 8:33. doi: 10.3389/fninf.2014.00033.]]></description>
+  <version>1.0.0.0.rc</version>
+  <documentation-url>http://www.example.com/Slicer/Modules/PBNRR</documentation-url>
+  <license>BSD</license>
+  <contributor>Angelos Angelopoulos (CRTC), Fotis Drakopoulos (CRTC), Yixun Liu (CRTC), Andriy Kot (CRTC), Andrey Fedorov (SPL B&amp;W Harvard), Olivier Clatz (Asclepios INRIA), Nikos Chrisochoides (CRTC)</contributor>
+  <acknowledgements>This work is funded mainly by the ARRA funds for the ITK-v4 implementation with grant number:NLMA2D2201000586P.In addition, this work is supported in part by NSFgrants:CCF-1139864, CCF-1136538, and CSI-1136536 and by the John Simon Guggenheim Foundation and the Richard T.Cheng Endowment.</acknowledgements>
+  <parameters>
+    <label>Registration Parameters</label>
+    <description><![CDATA[Parameters used for the registration.]]></description>
+    <integer-vector>
+      <name>BlockRadius</name>
+      <longflag>blockRadius</longflag>
+      <description>Radius (in image voxels) of the selected image blocks in each dimension (x,y,z).</description>
+      <label>Block Radius</label>
+      <default>1,1,1</default>
+    </integer-vector>
+    <integer-vector>
+      <name>WindowRadius</name>
+      <longflag>windowRadius</longflag>
+      <description>Radius (in image voxels) of the Block Matching window in each image dimension (x,y,z).</description>
+      <label>Window Radius</label>
+      <default>5,5,5</default>
+    </integer-vector>
+	  <double>
+      <name>SelectionFraction</name>
+      <longflag>selectionFraction</longflag>
+      <description><![CDATA[Fraction of the selected blocks from the total number of image blocks. Value should be between [0.01,1].]]></description>
+      <label>Selection Fraction</label>
+      <default>0.05</default>
+      <constraints>
+        <minimum>0.01</minimum>
+        <maximum>1.0</maximum>
+        <step>0.01</step>
+      </constraints>
+    </double>
+	  <double>
+      <name>RejectionFraction</name>
+      <longflag>rejectionFraction</longflag>
+      <description><![CDATA[Fraction of the rejected blocks from the number of the selected image blocks. Value should be between [0.01,1).]]></description>
+      <label>Rejection Fraction</label>
+      <default>0.25</default>
+      <constraints>
+        <minimum>0.01</minimum>
+        <maximum>0.99</maximum>
+        <step>0.01</step>
+      </constraints>
+    </double>
+	  <integer>
+      <name>OutlierRejectionSteps</name>
+      <longflag>outlierRejectionSteps</longflag>
+      <description><![CDATA[Number of outlier rejection steps. Value should be between [1,20].]]></description>
+      <label>Outlier Rejection Steps</label>
+      <default>5</default>
+      <constraints>
+        <minimum>1</minimum>
+        <maximum>20</maximum>
+        <step>1</step>
+      </constraints>
+    </integer>
+	  <integer>
+      <name>InterpolationSteps</name>
+      <longflag>interpolationSteps</longflag>
+      <description><![CDATA[Number of interpolation steps. Value should be between [1,20].]]></description>
+      <label>Interpolation Steps</label>
+      <default>5</default>
+      <constraints>
+        <minimum>1</minimum>
+        <maximum>20</maximum>
+        <step>1</step>
+      </constraints>
+    </integer>
+    <double>
+      <name>YoungModulus</name>
+      <longflag>youngModulus</longflag>
+      <description><![CDATA[Young Modulus of the linear bio-mechanical model.]]></description>
+      <label>Young Modulus</label>
+      <default>0.0021</default>
+    </double>
+    <double>
+      <name>PoissonRatio</name>
+      <longflag>poissonRatio</longflag>
+      <description><![CDATA[Poisson Ratio of the linear bio-mechanical model. Value should be between [0.10,0.49].]]></description>
+      <label>Poisson Ratio</label>
+      <default>0.45</default>
+      <constraints>
+        <minimum>0.10</minimum>
+        <maximum>0.49</maximum>
+        <step>0.01</step>
+      </constraints>
+    </double>
+  </parameters>
+  <parameters>
+    <label>I/O</label>
+    <description><![CDATA[Input/output parameters.]]></description>
+    <image type = "scalar">
+      <name>MovingImageFileName</name>
+  	  <longflag>movingImage</longflag>
+      <label>Input Moving Image</label>
+      <channel>input</channel>
+      <description><![CDATA[Input moving image.]]></description>
+    </image>
+  <image type = "scalar">
+    <name>FixedImageFileName</name>
+	<longflag>fixedImage</longflag>
+    <label>Input Fixed Image</label>
+    <channel>input</channel>
+    <description><![CDATA[Input fixed image.]]></description>
+  </image>
+  <image type = "scalar">
+    <name>MaskImageFileName</name>
+	<longflag>maskImage</longflag>
+    <label>Input Mask Image</label>
+    <channel>input</channel>
+    <description><![CDATA[Input brain mask of the moving image.]]></description>
+  </image>
+  <file>
+    <name>MeshFileName</name>
+    <longflag>mesh</longflag>
+    <label>Input Mesh</label>
+    <channel>input</channel>
+    <description><![CDATA[Input tetrahedral mesh of the brain mask (vtk file format).]]></description>
+  </file>
+  <image type = "scalar">
+    <name>WarpedMovingImageFileName</name>
+    <longflag>outputImage</longflag>
+    <label>Output Volume</label>
+    <channel>output</channel>
+    <description><![CDATA[Moving image to the fixed image coordinate frame (optional).]]></description>
+  </image>
+  <image type = "vector">
+    <name>DirectDeformationFieldFileName</name>
+    <longflag>outputDirectDeformationField</longflag>
+    <label>Output Direct Deformation Field</label>
+    <channel>output</channel>
+    <description><![CDATA[Transform calculated that aligns the fixed and moving image. Maps positions in the moving coordinate frame to the fixed coordinate frame (optional).]]></description>
+  </image>
+  <image type = "vector">
+    <name>InverseDeformationFieldFileName</name>
+    <longflag>outputInverseDeformationField</longflag>
+    <label>Output Inverse Deformation Field</label>
+    <channel>output</channel>
+    <description><![CDATA[Transform calculated that aligns the fixed and moving image. Maps positions in the fixed coordinate frame to the moving coordinate frame (optional).]]></description>
+  </image>
+  <file>
+    <name>WarpedMeshFileName</name>
+    <longflag>outputWarpedMesh</longflag>
+    <label>Output Warped Mesh</label>
+    <channel>output</channel>
+    <description><![CDATA[Warped tetrahedral mesh in vtk file format (optional).]]></description>
+  	<default></default>
+  </file>
+  </parameters>
+</executable>
