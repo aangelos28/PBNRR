@@ -43,7 +43,7 @@ The module Non-Rigid Registers a moving to a fixed MRI. It uses a linear homogen
 
 * `Input Mask Image`: The input moving mask.
 
-* `Input Mesh`: The input moving image.
+* `Input Mesh`: The input mesh.
 
 * `Output Volume`: Moving image to the fixed image coordinate frame (optional).
 
