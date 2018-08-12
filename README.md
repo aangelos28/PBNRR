@@ -2,7 +2,7 @@
 
 **Extension**: *Physics-Based Non-Rigid Registration (PBNRR)*
 
-**Acknowledgments**: This work is funded mainly by the ARRA funds for the ITK-v4 implementation with grant number:NLMA2D2201000586P. In addition, this work is supported in part by NSFgrants:CCF-1139864, CCF-1136538, and CSI-1136536 and by the John Simon Guggenheim Foundation and the Richard T.Cheng Endowment.
+**Acknowledgments**: This work is funded mainly by the ARRA funds for the ITK-v4 implementation with grant number:NLMA2D2201000586P. In addition, this work is supported in part by the NSF grant CCF-1439079 and by the John Simon Guggenheim Foundation and the Richard T. Cheng Endowment.
 
 **Contributors**: Angelos Angelopoulos (CRTC), Fotis Drakopoulos (CRTC), Yixun Liu (CRTC), Andriy Kot (CRTC), Andrey Fedorov (SPL B&W Harvard), Olivier Clatz (Asclepios INRIA), Nikos Chrisochoides (CRTC)
 
