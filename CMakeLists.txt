@@ -13,11 +13,6 @@ set(EXTENSION_SCREENSHOTURLS "http://www.example.com/Slicer/Extensions/PBNRR/Scr
 set(EXTENSION_DEPENDS "NA") # Specified as a space separated string, a list or 'NA' if any
 
 #-----------------------------------------------------------------------------
-# Set CXX and C compilers to gcc 6.4.0
-set(CMAKE_CXX_COMPILER "/usr/bin/g++-6")
-set(CMAKE_C_COMPILER "/usr/bin/gcc-6")
-
-#-----------------------------------------------------------------------------
 # Extension dependencies
 find_package(Slicer REQUIRED)
 include(${Slicer_USE_FILE})
