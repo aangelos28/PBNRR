@@ -57,3 +57,13 @@ The module Non-Rigid Registers a moving to a fixed MRI. It uses a linear homogen
 * Olivier Clatz, Hervé Delingette, Ion-Florin Talos, Alexandra J. Golby, Ron Kikinis, Ferenc Jolesz, Nicholas Ayache, and Simon Warfield,“Robust Non-Rigid Registration to Capture Brain Shift from Intra-Operative MRI“, IEEE Transactions on Medical Imaging, 24(11):1417-1427, Nov. 2005.
 
 * Liu Y, Kot A, Drakopoulos F, Yao C, Fedorov A, Enquobahrie A, Clatz O and Chrisochoides NP (2014), ”An ITK implementation of a physics-based non-rigid registration method for brain deformation in image-guided neurosurgery”, Frontiers in Neuroinformatics 8:33. doi: 10.3389/fninf.2014.00033
+
+## History
+
+The module was originally hosted at https://github.com/fdrakopo/PBNRR_SlicerExtension and maintained
+by [Fotis Drakopoulos](https://github.com/fdrakopo) from the Center for Real-Time Computing (CRTC).
+
+On August 1st 2018, associated files have been added to https://github.com/aangelos28/PBNRR maintained
+by [Angelos Angelopoulos](https://github.com/aangelos28) also from the Center for Real-Time Computing (CRTC).
+Previous commit history was ignored because it was short (only few commits) and it contained large data files
+causing the initial checkout to take a long time.
