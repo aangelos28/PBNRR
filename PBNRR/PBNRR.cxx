@@ -29,7 +29,7 @@ namespace
 void PrintLinearTetrahedraVTK(itk::VectorContainer < unsigned long ,itk::fem::Element::Node::Pointer> *NodeContainer,
 		itk::VectorContainer<unsigned long  ,itk::fem::Element::Pointer> *ElementContainer,std::string OutputFileName)
 {
-	if(NodeContainer == NULL || ElementContainer == NULL || OutputFileName.empty())
+	if(NodeContainer == nullptr || ElementContainer == nullptr || OutputFileName.empty())
 		return;
 
 	vtkNew<vtkUnstructuredGrid> pUG;
@@ -38,7 +38,7 @@ void PrintLinearTetrahedraVTK(itk::VectorContainer < unsigned long ,itk::fem::El
 	// Set nodes coordinates
 	int numNodes = NodeContainer->Size();
 
-	itk::fem::Element::Node::Pointer pNode = NULL;
+	itk::fem::Element::Node::Pointer pNode = nullptr;
 	itk::fem::Element::VectorType vec;
 
     for( int i=0; i < numNodes; i++ )
@@ -55,7 +55,7 @@ void PrintLinearTetrahedraVTK(itk::VectorContainer < unsigned long ,itk::fem::El
 	// Set the id's of cells vertices
 	vtkIdList* ptIds = vtkIdList::New();
 
-	itk::fem::Element::Pointer pTetr = NULL;
+	itk::fem::Element::Pointer pTetr = nullptr;
 	long int ids[4];
 
 	int numTets = ElementContainer->Size();
@@ -93,11 +93,11 @@ template <typename TFixedImage, typename TMovingImage, typename TMaskImage, type
 typename TDeformationField::Pointer CreateInverseDeformationField(typename itk::fem::PhysicsBasedNonRigidRegistrationMethod<TFixedImage, TMovingImage, TMaskImage, TMesh, TDeformationField>::Pointer pPBNRRFilter)
 {
 	if( pPBNRRFilter.IsNull() )
-		return NULL;
+		return nullptr;
 
 	typename TDeformationField::Pointer pDirectField = pPBNRRFilter->GetOutput();
 	if(pDirectField.IsNull())
-		return NULL;
+		return nullptr;
 
 	const unsigned int ImageDimension = 3;
 	itk::fem::Element::VectorType vMin,vMax,VoxelDispl,nodeDispl,vGlobal,vLocal,shapeF,dVec;
@@ -128,7 +128,7 @@ typename TDeformationField::Pointer CreateInverseDeformationField(typename itk::
 			pPBNRRFilter->GetFEMFilter()->GetFEMSolver()->GetOutput();
 
 	if(!pFEMObject)
-		return NULL;
+		return nullptr;
 
 	// Loop through all the cells of mesh
 	for(it = pFEMObject->GetElementContainer()->Begin(); it != pFEMObject->GetElementContainer()->End(); ++it)
@@ -236,11 +236,11 @@ template <typename TFixedImage, typename TMovingImage, typename TMaskImage, type
 typename TMovingImage::Pointer CreateWarpedImage(typename itk::fem::PhysicsBasedNonRigidRegistrationMethod<TFixedImage, TMovingImage, TMaskImage, TMesh, TDeformationField>::Pointer pPBNRRFilter)
 {
 	if( pPBNRRFilter.IsNull() )
-		return NULL;
+		return nullptr;
 
 	const TMovingImage* pMovingImage = pPBNRRFilter->GetMovingImage();
 	if(!pMovingImage)
-		return NULL;
+		return nullptr;
 
 	const unsigned int ImageDimension = 3;
 	itk::fem::Element::VectorType vMin,vMax,VoxelDispl,nodeDispl,vGlobal,vLocal,shapeF,dVec,pos;
@@ -275,7 +275,7 @@ typename TMovingImage::Pointer CreateWarpedImage(typename itk::fem::PhysicsBased
 			pPBNRRFilter->GetFEMFilter()->GetFEMSolver()->GetOutput();
 
 	if(!pFEMObject)
-		return NULL;
+		return nullptr;
 
 	// Loop through all the cells of mesh
 	for(it = pFEMObject->GetElementContainer()->Begin(); it != pFEMObject->GetElementContainer()->End(); ++it)

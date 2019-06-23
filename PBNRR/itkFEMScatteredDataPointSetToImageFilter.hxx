@@ -29,7 +29,6 @@
 #include "vnl/vnl_math.h"
 #include "vnl/algo/vnl_matrix_inverse.h"
 #include "vnl/vnl_vector.h"
-#include "vcl_limits.h"
 
 namespace itk
 {
