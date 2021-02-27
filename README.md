@@ -4,7 +4,7 @@
 
 **Acknowledgments**: This work is funded mainly by the ARRA funds for the ITK-v4 implementation with grant number:NLMA2D2201000586P. In addition, this work is supported in part by the NSF grant CCF-1439079 and by the John Simon Guggenheim Foundation and the Richard T. Cheng Endowment.
 
-**Contributors**: Angelos Angelopoulos (CRTC), Fotis Drakopoulos (CRTC), Yixun Liu (CRTC), Andriy Kot (CRTC), Andrey Fedorov (SPL B&W Harvard), Olivier Clatz (Asclepios INRIA), Nikos Chrisochoides (CRTC)
+**Contributors**: Angelos Angelopoulos (CRTC), Fotis Drakopoulos (CRTC, author of PBNRR), Yixun Liu (CRTC), Andriy Kot (CRTC), Andrey Fedorov (SPL B&W Harvard), Olivier Clatz (Asclepios INRIA), Nikos Chrisochoides (CRTC)
 
 **Contact**: Nikos Chrisochoides
 
