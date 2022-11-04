@@ -109,7 +109,6 @@ typename TDeformationField::Pointer CreateInverseDeformationField(typename itk::
 	unsigned int numDofs = 0;
 	itk::fem::Element::DegreeOfFreedomIDType id;
 	typename TDeformationField::PointType global_pt;
-	typename TDeformationField::PointType point;
 
 	// Allocate space for the warped image
 	typename TDeformationField::Pointer pInverseField = TDeformationField::New();
